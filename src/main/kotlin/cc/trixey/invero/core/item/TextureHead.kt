@@ -20,10 +20,10 @@ import taboolib.platform.util.buildItem
 class TextureHead(@SerialName("head") override val raw: String) : Texture() {
 
     @Transient
-    private val defaultHead = buildItem(XMaterial.PLAYER_HEAD) { name = "§8..." }
+    private val defaultHead = XMaterial.PLAYER_HEAD.parseItem()?.apply { itemMeta = itemMeta?.apply { setDisplayName("§8...") } }
 
     @Transient
-    override var lazyTexture: ItemStack? = null
+    override var lazyTexture: ItemStack? = null  
 
     override fun generateItem(context: Context, block: (ItemStack) -> Unit) {
         if (lazyTexture != null) return block(lazyTexture!!)
